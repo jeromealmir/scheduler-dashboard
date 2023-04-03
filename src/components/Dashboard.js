@@ -32,13 +32,22 @@ class Dashboard extends Component {
       },
     ];
 
+    const panels = data.map((data) => {
+      <Panel
+        key={data.id}
+        id={data.id}
+        label={data.label}
+        value={data.value}
+      />;
+    });
+
     const dashboardClasses = classnames("dashboard");
 
     if (this.state.loading) {
       return <Loading />;
     }
 
-    return <main className={dashboardClasses} />;
+    return <main className={dashboardClasses}>{panels}</main>;
   }
 }
 
