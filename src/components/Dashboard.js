@@ -29,12 +29,12 @@ const data = [
 class Dashboard extends Component {
   state = {
     loading: false,
-    focused: null,
+    focused: 2,
   };
 
   render() {
     const dashboardClasses = classnames("dashboard", {
-      "dashboard--focused": this.state.focused
+      "dashboard--focused": this.state.focused,
     });
 
     if (this.state.loading) {
@@ -46,7 +46,7 @@ class Dashboard extends Component {
         ? data.filter((panel) => this.state.focused === panel.id)
         : data
     ).map((data) => {
-      <Panel
+      return <Panel
         key={data.id}
         id={data.id}
         label={data.label}
