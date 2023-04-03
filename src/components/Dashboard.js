@@ -1,37 +1,37 @@
 import React, { Component } from "react";
-import Loading from "./Loading";
 import classnames from "classnames";
+import Loading from "./Loading";
+import Panel from "./Panel";
 
 class Dashboard extends Component {
-
   state = {
-    loading: false
+    loading: false,
   };
 
   render() {
-
     const data = [
       {
         id: 1,
         label: "Total Interviews",
-        value: 6
+        value: 6,
       },
       {
         id: 2,
         label: "Least Popular Time Slot",
-        value: "1pm"
+        value: "1pm",
       },
       {
         id: 3,
         label: "Most Popular Day",
-        value: "Wednesday"
+        value: "Wednesday",
       },
       {
         id: 4,
         label: "Interviews Per Day",
-        value: "2.3"
-      }
+        value: "2.3",
+      },
     ];
+
     const dashboardClasses = classnames("dashboard");
 
     if (this.state.loading) {
