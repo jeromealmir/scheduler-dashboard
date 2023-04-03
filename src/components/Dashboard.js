@@ -28,8 +28,11 @@ const data = [
 
 class Dashboard extends Component {
   state = {
-    loading: false,
+    loading: true,
     focused: null,
+    days: [],
+    appointments: {},
+    interviewers: {},
   };
 
   componentDidMount() {
