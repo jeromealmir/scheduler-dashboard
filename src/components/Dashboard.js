@@ -29,6 +29,7 @@ const data = [
   },
 ];
 
+
 class Dashboard extends Component {
   state = {
     loading: true,
@@ -37,14 +38,16 @@ class Dashboard extends Component {
     appointments: {},
     interviewers: {},
   };
-
+  
+  
   componentDidMount() {
     const focused = JSON.parse(localStorage.getItem("focused"));
-
+    
     if (focused) {
       this.setState({ focused });
     }
-
+    
+    
     Promise.all([
       axios.get("/api/days"),
       axios.get("/api/appointments"),
@@ -57,13 +60,22 @@ class Dashboard extends Component {
         interviewers: interviewers.data
       });
     });
-  }
+    
+    this.socket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
 
+    
+  }
+  
+  
   componentDidUpdate(previouseProps, previousState) {
     if (previousState.focused !== this.state.focused) {
       localStorage.setItem("focused", JSON.stringify(this.state.focused));
     }
-  }
+}
+  
+componentWillUnmount() {
+  this.socket.close()
+}
 
   selectPanel(id) {
     this.setState((previousState) => ({
